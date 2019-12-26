@@ -1,6 +1,7 @@
 # Trash are ignored everywhere
 *.map
 *.db
+/dev/prepros-6.config
 
 # Ignored all in root folder
 /*
