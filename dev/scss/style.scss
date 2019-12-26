@@ -1,7 +1,11 @@
 @import 'custom/base/variables';
 @import 'custom/base/reset';
+@import 'custom/base/functions';
 
 @import "custom/mixins/breakpoints";
 @import "custom/mixins/grid";
 
 @import "custom/utilities/grid-modules";
+
+@import "custom/components/type";
+@import "custom/components/header";

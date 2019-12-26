@@ -1,0 +1,49 @@
+/*
+ * Type
+*/
+
+// Body
+body {
+  font-size: $font-size-body;
+  font-weight: $fw-base;
+  line-height: $lh-base;
+  color: $body-color;
+  background-color: $body-bg;
+  -webkit-text-size-adjust: none;
+  -webkit-font-smoothing: subpixel-antialiased;
+}
+
+// Headings
+#{headings()} {
+  margin-bottom: 0;
+
+  a {
+    color: inherit;
+
+    &:hover { color: $primary; }
+  }
+}
+
+a {
+  &, &:focus, &:active {
+    color: inherit;
+  }
+
+  &:hover {
+    color: $secondary;
+  }
+
+  text-decoration: none;
+  transition: .3s ease-out all;
+}
+
+// Selection
+::selection {
+  background: $primary;
+  color: $white;
+}
+
+::-moz-selection {
+  background: $primary;
+  color: $white;
+}
