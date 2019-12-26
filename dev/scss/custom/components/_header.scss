@@ -1,3 +1,165 @@
 /*
  * Header
 */
+
+$header-width: map_get($container-max-widths, xxl);
+
+// Header Top
+.header-top,
+.header-main {
+
+  padding-left: 15px;
+  padding-right: 15px;
+
+  &-inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: $header-width;
+    margin: 0 auto;
+  }
+}
+
+.header-top {
+  color: $gray-9;
+  background-color: $gray-23;
+
+  &-inner {
+    flex-wrap: wrap;
+  }
+}
+
+.header-main {
+  padding-top: 41px;
+  padding-bottom: 41px;
+}
+
+// Header Navigation
+.header-nav {
+  &-item {
+    display: inline-block;
+  }
+
+  &-link {
+    position: relative;
+    display: block;
+    padding: 15px 15px;
+    font-size: 12px;
+    text-transform: uppercase;
+    background-color: transparent;
+
+    &:before {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 50%;
+      width: 20%;
+      border-top: 2px solid $primary;
+      visibility: hidden;
+      opacity: 0;
+      transform: translateX(-50%);
+      transition: .3s ease-out all;
+    }
+
+    &, &:focus, &:active {
+      color: $gray-9;
+    }
+
+    &.active,
+    &:hover {
+      color: $white;
+
+      &:before {
+        width: 100%;
+        visibility: visible;
+        opacity: 1;
+      }
+    }
+  }
+}
+
+// Header Login
+.header-login {
+  display: flex;
+  font-size: 12px;
+
+  &-link {
+    z-index: 1;
+    position: relative;
+    padding: 15px 31px;
+    display: inline-block;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+
+    &:before {
+      content: '';
+      z-index: -1;
+      position: absolute;
+      top: 0;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      opacity: 0;
+      @include gradient-horizontal($secondary-1, $primary-1);
+      transition: .3s ease-out all;
+    }
+
+    &, &:focus, &:active {
+      color: $white;
+      background-color: $secondary;
+    }
+
+    &:hover {
+      color: $white;
+      &:before {
+        width: 100%;
+        opacity: 1;
+      }
+    }
+
+    > * {
+      display: inline-block;
+      vertical-align: middle;
+      margin-left: 3px;
+      margin-right: 3px;
+      line-height: 1;
+    }
+  }
+}
+
+// Header Info
+
+
+.header-info {
+
+  font-size: 10px;
+
+  &-group {
+    &-item {
+      display: inline-block;
+    }
+
+    &-link {
+      display: inline-block;
+      text-align: center;
+      text-transform: uppercase;
+
+      &, &:focus, &:active {
+        color: $gray-17;
+      }
+
+      &:hover {
+        color: $secondary;
+      }
+
+      > * {
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      > * + * { margin-top: 5px; }
+    }
+  }
+}

@@ -57,7 +57,7 @@ $font-family-base: $font-family-sans-serif;
 // Base fonts
 $font-size-body: 16px;
 $fw-base: 400;
-$lh-base: 24px;
+$lh-base: $font-size-body * 1.2;
 
 // Grid breakpoints
 $grid-breakpoints: (
@@ -65,7 +65,8 @@ $grid-breakpoints: (
    sm: 576px,
    md: 768px,
    lg: 992px,
-   xl: 1200px
+   xl: 1200px,
+   xxl: 1360px
 );
 
 // Grid containers
@@ -73,9 +74,10 @@ $container-max-widths: (
    sm: 540px,
    md: 720px,
    lg: 960px,
-   xl: 1200px
+   xl: 1200px,
+   xxl: 1360px
 );
 
 // Grid columns
 $grid-columns: 12;
-$grid-gutter-width: 30px;
+$grid-gutter-width: 20px;

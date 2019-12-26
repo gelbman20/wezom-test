@@ -1,0 +1,50 @@
+/*
+ * Buttons
+*/
+.btn {
+  z-index: 1;
+  position: relative;
+  padding: 15px 31px;
+  display: inline-block;
+  font-size: 12px;
+  text-transform: uppercase;
+  cursor: pointer;
+  border: none;
+  transition: .3s ease-out all;
+
+  > * {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 3px;
+    margin-right: 3px;
+    line-height: 1;
+  }
+}
+
+.btn-secondary {
+  &:before {
+    content: '';
+    z-index: -1;
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 0;
+    opacity: 0;
+    @include gradient-horizontal($secondary-1, $primary-1);
+    transition: .3s ease-out all;
+  }
+
+  &, &:focus, &:active {
+    color: $white;
+    background-color: $secondary;
+  }
+
+  &:hover {
+    color: $white;
+    &:before {
+      width: 100%;
+      opacity: 1;
+    }
+  }
+}

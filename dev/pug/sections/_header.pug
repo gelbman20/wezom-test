@@ -1,0 +1,40 @@
+header.header
+  .header-top
+    .header-top-inner
+      ul.header-nav
+        li.header-nav-item: a.header-nav-link.active(href='#') Главная
+        li.header-nav-item: a.header-nav-link(href='#') О компании
+        li.header-nav-item: a.header-nav-link(href='#') ССылка 1
+        li.header-nav-item: a.header-nav-link(href='#') Cсылка 2
+        li.header-nav-item: a.header-nav-link(href='#') Cсылка 3
+      .header-login
+        a.header-login-link(href='#')
+          +img('user-01-16x15.png')
+          =" "
+          span Вход
+  .header-main
+    .header-main-inner
+      .header-logo
+        .header-logo-link: +img('logo-default-195x37.png')
+      .header-cta
+        form.form.form-inline
+          .input-group
+            input.form-input(placeholder='+380 98 170 00 740')
+          .input-button
+            button.btn.btn-secondary(type='submit')
+              +img('phone-01-12x17.png')
+              span Перезвонить мне
+      .header-info
+        ul.header-info-group
+          li.header-info-group-item
+            a.header-info-group-link(href='#')
+              +img('compare-01-45x34.png')
+              span Cравнение
+          li.header-info-group-item
+            a.header-info-group-link(href='#')
+              +img('favorites-01-34-33.png')
+              span Избранное
+          li.header-info-group-item
+            a.header-info-group-link(href='#')
+              +img('basket-01-40x35.png')
+              span Корзина
