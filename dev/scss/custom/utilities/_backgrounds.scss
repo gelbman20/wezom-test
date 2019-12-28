@@ -1,0 +1,52 @@
+/** @section Backgrounds */
+
+.context-dark {
+  @extend %context-dark;
+}
+
+%context-dark {
+  // Logo
+  .brand {
+    .brand-logo-dark { display: none; }
+
+    .brand-logo-light { display: block; }
+  }
+}
+
+%context-light {
+  // Logo
+  .brand {
+    .brand-logo-dark { display: block; }
+
+    .brand-logo-light { display: none; }
+  }
+}
+
+
+// Light Backgrounds
+.bg-default { @include bg-behaviour($body-bg); }
+
+
+// Accent Backgrounds
+.bg-primary {
+  @extend %context-dark;
+
+  & + & { padding-top: 0; }
+}
+
+
+// Background Image
+.bg-image {
+  background-size: cover;
+  background-position: center;
+}
+
+
+// Desktop only
+html:not(.tablet):not(.mobile) {
+  .bg-fixed {
+    @include media-breakpoint-up(lg) {
+      background-attachment: fixed;
+    }
+  }
+}

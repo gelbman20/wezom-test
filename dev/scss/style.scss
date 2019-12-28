@@ -2,12 +2,18 @@
 @import 'custom/base/reset';
 @import 'custom/base/functions';
 
+@import "custom/mixins/mixins";
 @import "custom/mixins/breakpoints";
 @import "custom/mixins/grid";
 @import "custom/mixins/gradients";
 @import "custom/mixins/groups";
 
 @import "custom/utilities/grid-modules";
+@import "custom/utilities/flex";
+@import "custom/utilities/row-spacing";
+@import "custom/utilities/text";
+@import "custom/utilities/display";
+@import "custom/utilities/backgrounds";
 
 @import "custom/components/type";
 @import "custom/components/header";
