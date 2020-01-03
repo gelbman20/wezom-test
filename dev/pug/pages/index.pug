@@ -7,3 +7,58 @@ block page
   // Header
   include ../sections/_header
 
+  // Section Main
+  .section
+    .container
+      .row.row-20
+        .col-12.col-lg-3
+          .navigation
+            .navigation-header
+              .navigation-burger: +img('burger-01-14x10.png')
+              .navigation-title: span Меню
+            .navigation-body
+              ul.navigation-list
+                - for(let i = 1; i <= 7; i++)
+                  li.navigation-list-item
+                    a.navigation-list-link(href='#')
+                      span= `Ссылка ${i}`
+                      span.navigation-list-link-img: +img('arrow-right-01-8x14.png')
+        .col-12.col-lg-9
+          form.form.form-inline
+            .input-group: input.form-input.form-input-search(placeholder='Поиск по сайту')
+            .input-button: button.btn.btn-lg.btn-secondary(type='submit'): span Поиск
+          .block-goods
+            .block-goods-header
+              -
+                goodsList = [
+                  {
+                    title: 'Ссылка 1',
+                    icon: 'goods-car'
+                  },
+                  {
+                    title: 'Ссылка 2',
+                    icon: 'goods-truck'
+                  },
+                  {
+                    title: 'Ссылка 3',
+                    icon: 'goods-wheel'
+                  },
+                  {
+                    title: 'Ссылка 4',
+                    icon: 'goods-oilcan'
+                  },
+                  {
+                    title: 'Ссылка 5',
+                    icon: 'goods-supply'
+                  },
+                ]
+              ul.block-goods-list
+                - for (let i = 0; i < goodsList.length; i++)
+                  - const {title, icon} = goodsList[i];
+                    li.block-goods-list-item
+                      a.block-goods-list-link(href='#' class= i === 0 ? 'active' : '')
+                        span.block-goods-list-link-img
+                          i.icon-goods(class=icon)
+                          i.icon-goods(class=icon + '-active')
+                        span.block-goods-list-link-text= title
+            .block-goods-body

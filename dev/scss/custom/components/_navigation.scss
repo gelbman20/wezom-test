@@ -1,0 +1,60 @@
+/*
+ * Navigation
+*/
+.navigation {
+  max-width: 326px;
+  width: 100%;
+  &-header {
+    display: flex;
+    align-items: center;
+    color: $white;
+    @include gradient-horizontal($secondary-1, $primary-1);
+  }
+
+  &-burger {
+    display: block;
+    width: 62px;
+    height: 56px;
+    text-align: center;
+    line-height: 56px;
+    background-color: $secondary-5;
+  }
+
+  &-title {
+    padding: 10px 23px;
+    font-size: 20px;
+    font-weight: 700;
+  }
+
+  &-list {
+    &-item {
+      border: 1px solid $gray-4;
+      border-top: 0;
+    }
+
+    &-link {
+      display: flex;
+      justify-content: space-between;
+      align-content: center;
+      padding: 18px;
+      font-weight: 600;
+      text-transform: uppercase;
+      @include link($gray-18, $secondary);
+
+      @include media-breakpoint-up(xl) {
+        padding: 18px 39px;
+      }
+
+      &-img {
+        transform: translateX(0);
+        transition: .3s ease-out all;
+      }
+
+      &:hover {
+        .navigation-list-link-img {
+          transform: translateX(10px);
+        }
+      }
+    }
+  }
+}

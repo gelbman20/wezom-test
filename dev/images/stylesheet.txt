@@ -1,0 +1,50 @@
+.stitches-goods(@x: 0, @y: 0, @width: 0, @height: 0) {
+    background-position: @x @y;
+    width: @width;
+    height: @height;
+}
+
+.goods {
+    background-image: url(spritesheet.png);    background-repeat: no-repeat;
+    display: block;
+
+    &.goods-car {
+        .stitches-goods(-5px, -5px, 40px, 17px);
+    }
+
+    &.goods-car-active {
+        .stitches-goods(-55px, -5px, 40px, 17px);
+    }
+
+    &.goods-oilcan {
+        .stitches-goods(-5px, -32px, 22px, 29px);
+    }
+
+    &.goods-oilcan-active {
+        .stitches-goods(-37px, -32px, 22px, 29px);
+    }
+
+    &.goods-supply {
+        .stitches-goods(-69px, -32px, 26px, 24px);
+    }
+
+    &.goods-supply-active {
+        .stitches-goods(-69px, -66px, 26px, 24px);
+    }
+
+    &.goods-truck {
+        .stitches-goods(-105px, -5px, 46px, 32px);
+    }
+
+    &.goods-truck-active {
+        .stitches-goods(-105px, -47px, 46px, 32px);
+    }
+
+    &.goods-wheel {
+        .stitches-goods(-5px, -89px, 25px, 25px);
+    }
+
+    &.goods-wheel-active {
+        .stitches-goods(-105px, -89px, 25px, 25px);
+    }
+}
