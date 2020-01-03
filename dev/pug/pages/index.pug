@@ -61,4 +61,56 @@ block page
                           i.icon-goods(class=icon)
                           i.icon-goods(class=icon + '-active')
                         span.block-goods-list-link-text= title
-            .block-goods-body
+            .block-goods-body.context-dark
+              .tabs
+                ul.tabs-list
+                  li.tabs-list-item: a.tabs-list-link(href='#tab-content-1') Tab 1
+                  li.tabs-list-item: a.active.tabs-list-link(href='#tab-content-2') Tab 2
+              .content-tab
+                .row.row-25
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 1
+                        - list1 = ['Mercedes', 'BMW', 'Audi', 'Hyundai', 'Reno', 'Volvo'];
+                        - for (let i = 0; i < list1.length; i++)
+                          option(value=`${ list1[i].toLowerCase() }`)= list1[i]
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 2
+                        - list2 = ['Hatchback', 'Sedan', 'MPV', 'SUV', 'Crossover', 'Convertible'];
+                        - for (let i = 0; i < list2.length; i++)
+                          option(value=`${ list2[i].toLowerCase() }`)= list2[i]
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 3
+                          - list3 = ['White', 'Silver', 'Black', 'Med. Dark Blue', 'Med. Dark Gray', 'Med. Red', 'Med. Dark Green', 'Light Brown'];
+                          - for (let i = 0; i < list3.length; i++)
+                              option(value=`${list3[i].toLowerCase()}`)= list3[i]
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 4
+                          - list4 = ['5km', '10km', '15km', '20km', '30km', '35km', '40km', '45km+'];
+                          - for (let i = 0; i < list4.length; i++)
+                              option(value=`${list4[i].toLowerCase()}`)= list4[i]
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 5
+                          - for (let i = 0; i < 9; i++)
+                           option(value=`Lorem ${ i }`.toLowerCase() )= `lorem ${ i }`
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 6
+                        - for (let i = 10; i < 19; i++)
+                            option(value=`Lorem ${i}`.toLowerCase() )= `lorem ${i}`
+                  .col-12.col-sm-6.col-md-3
+                    .select-wrapper
+                      select.select
+                        option(value='hide') Select 7
+                          - for (let i = 19; i < 29; i++)
+                           option(value=`Lorem ${ i }`.toLowerCase() )= `lorem ${ i }`

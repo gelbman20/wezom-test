@@ -1,0 +1,51 @@
+/*
+ * Tabs
+*/
+.tabs {
+  margin-bottom: 25px;
+  &-list {
+    display: inline-block;
+    padding: 4px;
+    background-color: $gray-23;
+
+    &-item {
+      display: inline-block;
+      font-size: 14px;
+    }
+
+    &-link {
+      display: inline-block;
+      min-width: 142px;
+      padding: 8px 15px;
+      text-align: center;
+
+      &, &:focus, &:active {
+        color: $white;
+        background-color: $gray-23;
+      }
+
+      &.active,
+      &:hover {
+        color: $white;
+        background-color: $secondary;
+      }
+    }
+
+    .context-dark & {
+      background-color: $gray-3;
+
+      &-link {
+        &, &:focus, &:active {
+          color: $gray-23;
+          background-color: $gray-3;
+        }
+
+        &.active,
+        &:hover {
+          color: $white;
+          background-color: $secondary;
+        }
+      }
+    }
+  }
+}

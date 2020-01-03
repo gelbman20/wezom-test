@@ -1,0 +1,107 @@
+/*
+ * Select
+*/
+$select-color: $gray-12;
+$select-background: $white;
+$select-height: 40px;
+
+.select {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  font-size: 14px;
+  line-height: $select-height / 2 + 4px;
+  color: $select-color;
+  width: 100%;
+  height: $select-height;
+
+  &-wrapper {
+    line-height: 0;
+    padding-bottom: 1px;
+    border-bottom: 1px solid $select-background;
+  }
+
+  &-hidden {
+    display: none;
+    visibility: hidden;
+    padding-right: 10px;
+  }
+
+  &-input {
+    position: absolute;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: $select-background;
+    padding: 8px 35px 8px 15px;
+    transition: all .2s ease-in;
+
+    &:after {
+      content: "";
+      width: 0;
+      height: 0;
+      border-style: solid;
+      border-width: 5px 3.5px 0 3.5px;
+      border-color: $secondary-1 transparent transparent transparent;
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      right: 26px;
+      transition: .3s ease-out all;
+    }
+
+    &:hover {
+      background-color: $select-background;
+    }
+
+    &:active,
+    &.active {
+      background-color: $select-background;
+
+      &:after {
+        transform: scale(1, -1);
+      }
+    }
+  }
+
+  &-options {
+    display: block;
+    position: absolute;
+    top: 100%;
+    right: 0;
+    left: 0;
+    z-index: 999;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    background-color: $select-background;
+    transform: translateY(10px);
+    pointer-events: none;
+    opacity: 0;
+    transition: .3s ease-out all;
+
+    &.active {
+      pointer-events: auto;
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    li {
+      margin: 0;
+      padding: 5px 15px;
+      border-top: 1px solid $select-background;
+      transition: all .15s ease-in;
+
+      &.active,
+      &:hover {
+        color: $select-background;
+        background: $select-color;
+      }
+
+      &[rel="hide"] {
+        display: none;
+      }
+    }
+  }
+}
