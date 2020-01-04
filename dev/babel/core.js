@@ -1,4 +1,22 @@
 /**
+ * Functions
+ */
+
+const createElWithClass = (tag, className) => {
+  const element = document.createElement(tag);
+  element.classList.add(className);
+  return element;
+};
+
+const removeActive = (...elements) => {
+  elements.map(element => element.classList.remove('active'))
+};
+
+const addActive = (...elements) => {
+  elements.map(element => element.classList.add('active'))
+};
+
+/**
  * Header
  */
 class Header {
@@ -27,7 +45,7 @@ class Header {
     
     document.addEventListener('click', (event) => {
       const isClickInside = navWrapper.contains(event.target);
-      if (!isClickInside && nav.classList.contains('open')) {
+      if(!isClickInside&&nav.classList.contains('open')) {
         navToggle.classList.remove('open');
         nav.classList.remove('open');
       }
@@ -41,84 +59,70 @@ class Header {
 class SelectCustom {
   
   constructor({ selector = 'selector' } = {}) {
-    this.selector = selector;
+    this.select = selector;
+    this.selectOptions = [ ...this.select.children ];
+    this.selectWrapper = createElWithClass('div', 'select');
+    this.selectInput = createElWithClass('div', 'select-input');
+    this.selectList = createElWithClass('ul', 'select-options');
+    this.itemList = null;
+    
     this.init();
   }
   
-  removeActive = (...elements) => {
-    elements.map(element => element.classList.remove('active'))
-  };
-  
-  addActive = (...elements) => {
-    elements.map(element => element.classList.add('active'))
-  };
-  
-  createElWithClass = (tag, className) => {
-    const element = document.createElement(tag);
-    element.classList.add(className);
-    return element;
-  };
+  resetSelectors() {
+    this.selectInput.innerHTML = this.selectOptions[0].innerHTML;
+  }
   
   init() {
-    const selects = [...document.querySelectorAll(this.selector)];
+    this.select.classList.add('select-hidden');
     
-    for (let i = 0; i < selects.length; i++) {
-      const select = selects[i];
-      const selectOptions = [...select.children];
-      const selectWrapper = this.createElWithClass('div', 'select');
-      const selectInput = this.createElWithClass('div', 'select-input');
-      const selectList = this.createElWithClass('ul', 'select-options');
-      
-      select.classList.add('select-hidden');
-      
-      // Build HTML Structure
-      select.parentNode.insertBefore(selectWrapper, select);
-      selectWrapper.appendChild(select);
-      
-      select.parentNode.insertBefore(selectInput, select);
-      
-      // Get text of first option
-      selectInput.innerHTML = selectOptions[0].innerHTML;
-      
-      // Fill selectList
-      selectOptions.map((option, index) => {
-        if (index > 0) {
-          const li = document.createElement('li');
-          const text = option.innerHTML;
-          const ref = option.value;
-          
-          li.innerHTML = text;
-          li.setAttribute('ref', ref);
-          selectList.appendChild(li);
-        }
-      });
-      selectWrapper.appendChild(selectList);
-      
-      // List item event
-      const itemList = [...selectList.children];
-      itemList.map(item => {
-        item.addEventListener('click', () => {
-          this.removeActive(selectInput, selectList, ...itemList);
-          this.addActive(item);
-          
-          selectInput.innerHTML = item.innerHTML;
-        })
-      });
-      
-      selectInput.addEventListener('click', (event) => {
-        if (selectInput.classList.contains('active')) {
-          this.removeActive(selectInput, selectList);
-        } else {
-          this.addActive(selectInput, selectList);
-        }
-      });
-      
-      document.addEventListener('click', (event) => {
-        const isClickInside = selectWrapper.contains(event.target);
-        if (!isClickInside) {
-          this.removeActive(selectInput, selectList);
-        }
-      });
-    }
+    // Build HTML Structure
+    this.select.parentNode.insertBefore(this.selectWrapper, this.select);
+    this.selectWrapper.appendChild(this.select);
+    
+    this.select.parentNode.insertBefore(this.selectInput, this.select);
+    
+    // Get text of first option
+    this.resetSelectors();
+    
+    // Fill selectList
+    this.selectOptions.map((option, index) => {
+      if(index > 0) {
+        const li = document.createElement('li');
+        const text = option.innerHTML;
+        const ref = option.value;
+        
+        li.innerHTML = text;
+        li.setAttribute('ref', ref);
+        this.selectList.appendChild(li);
+      }
+    });
+    this.selectWrapper.appendChild(this.selectList);
+    
+    // List item event
+    this.itemList = [ ...this.selectList.children ];
+    this.itemList.map(item => {
+      item.addEventListener('click', () => {
+        removeActive(this.selectInput, this.selectList, ...this.itemList);
+        addActive(item);
+        
+        this.selectInput.innerHTML = item.innerHTML;
+      })
+    });
+    
+    this.selectInput.addEventListener('click', () => {
+      if(this.selectInput.classList.contains('active')) {
+        removeActive(this.selectInput, this.selectList);
+      } else {
+        addActive(this.selectInput, this.selectList);
+      }
+    });
+    
+    document.addEventListener('click', (event) => {
+      const isClickInside = this.selectWrapper.contains(event.target);
+      if(!isClickInside) {
+        removeActive(this.selectInput, this.selectList);
+      }
+    });
   }
 }

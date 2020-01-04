@@ -2,7 +2,6 @@
  * Tabs
 */
 .tabs {
-  margin-bottom: 25px;
   &-list {
     display: inline-block;
     padding: 4px;
@@ -11,13 +10,24 @@
     &-item {
       display: inline-block;
       font-size: 14px;
+
+      .context-dark &.active {
+        .tabs-list-link {
+          color: $white;
+          background-color: $secondary;
+        }
+      }
     }
 
     &-link {
       display: inline-block;
-      min-width: 142px;
+      min-width: 110px;
       padding: 8px 15px;
       text-align: center;
+
+      @include media-breakpoint-up(sm) {
+        min-width: 142px;
+      }
 
       &, &:focus, &:active {
         color: $white;
@@ -48,4 +58,28 @@
       }
     }
   }
+
+  &-content {
+    padding-top: 28px;
+  }
+
+  &-pane {
+    position: relative;
+    z-index: 2;
+    pointer-events: none;
+    opacity: 0;
+    height: 0;
+    transform: translateY(10px);
+    transition: all 0s ease-out;
+
+    &.active {
+      opacity: 1;
+      pointer-events: auto;
+      height: initial;
+      transform: translateY(0);
+      transition: all 0.3s ease-out;
+    }
+  }
+
+  &-pane + .row { margin-top: 20px; }
 }

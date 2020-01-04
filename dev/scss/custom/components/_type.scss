@@ -4,6 +4,7 @@
 
 // Body
 body {
+
   font-size: $font-size-body;
   font-weight: $fw-base;
   line-height: $lh-base;
@@ -12,6 +13,11 @@ body {
   background-color: $body-bg;
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: subpixel-antialiased;
+}
+
+.page {
+  min-height: 100vh;
+  overflow-x: hidden;
 }
 
 // Headings

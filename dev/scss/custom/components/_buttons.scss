@@ -21,13 +21,57 @@
   }
 }
 
+.btn-md {
+  font-size: 14px;
+  text-transform: none;
+  &-big {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+}
+
 .btn-lg {
   padding: 18px 51px;
   font-size: 16px;
   font-weight: 700;
 }
 
-.btn-secondary {
+.btn-with-icon {
+
+  .btn-icon {
+    display: inline-block;
+  }
+
+  .icon-cross {
+    position: relative;
+    margin-right: 4px;
+    width: 15px;
+    height: 15px;
+    top: -2px;
+
+    &:before,&:after {
+      position: absolute;
+      content: '';
+      left: 0;
+      top: 50%;
+      width: 15px;
+      height: 1px;
+      transform-origin: 50% 50%;
+      background-color: $white;
+    }
+
+    &:before {
+      transform: rotate(45deg);
+    }
+
+    &:after {
+      transform: rotate(-45deg);
+    }
+  }
+}
+
+.btn-secondary,
+.btn-secondary-gradient {
   &:before {
     content: '';
     z-index: -1;
@@ -35,15 +79,23 @@
     top: 0;
     bottom: 0;
     left: 0;
-    width: 0;
-    opacity: 0;
     @include gradient-horizontal($secondary-1, $primary-1);
     transition: .3s ease-out all;
   }
 
   &, &:focus, &:active {
-    color: $white;
     background-color: $secondary;
+  }
+
+  &, &:focus, &:active, &:hover {
+    color: $white;
+  }
+}
+
+.btn-secondary {
+  &:before {
+    width: 0;
+    opacity: 0;
   }
 
   &:hover {
@@ -52,5 +104,30 @@
       width: 100%;
       opacity: 1;
     }
+  }
+}
+
+.btn-secondary-gradient {
+  &:before {
+    width: 100%;
+  }
+
+  &:hover {
+    &:before {
+      width: 0;
+      opacity: 0;
+    }
+  }
+}
+
+.btn-secondary-2 {
+  &, &:focus, &:active {
+    color: $white;
+    background-color: $secondary-2;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $secondary;
   }
 }

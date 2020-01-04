@@ -52,3 +52,38 @@ $form-input-height: 49px;
     color: $gray-20;
   }
 }
+
+.form-input-number {
+
+  &-wrapper {
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+  }
+
+  display: block;
+  width: 100%;
+  padding: 5px;
+  height: 40px;
+  color: $gray-18;
+  text-align: center;
+
+  &-group {
+    position: relative;
+    margin-bottom: 2px;
+    &:after {
+      content: '';
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: -2px;
+      border-bottom: 1px solid $gray-1;
+    }
+  }
+
+  &-label {
+    min-width: 57px;
+    padding-right: 5px;
+    color: $white;
+  }
+}

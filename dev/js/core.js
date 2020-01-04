@@ -7,8 +7,39 @@ function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
+ * Functions
+ */
+
+var createElWithClass = function createElWithClass(tag, className) {
+  var element = document.createElement(tag);
+  element.classList.add(className);
+  return element;
+};
+
+var removeActive = function removeActive() {
+  for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
+    elements[_key] = arguments[_key];
+  }
+
+  elements.map(function (element) {
+    return element.classList.remove('active');
+  });
+};
+
+var addActive = function addActive() {
+  for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
+    elements[_key2] = arguments[_key2];
+  }
+
+  elements.map(function (element) {
+    return element.classList.add('active');
+  });
+};
+
+/**
  * Header
  */
+
 var Header = function () {
   function Header() {
     _classCallCheck(this, Header);
@@ -62,105 +93,76 @@ var SelectCustom = function () {
 
     _classCallCheck(this, SelectCustom);
 
-    this.removeActive = function () {
-      for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-        elements[_key] = arguments[_key];
-      }
+    this.select = selector;
+    this.selectOptions = [].concat(_toConsumableArray(this.select.children));
+    this.selectWrapper = createElWithClass('div', 'select');
+    this.selectInput = createElWithClass('div', 'select-input');
+    this.selectList = createElWithClass('ul', 'select-options');
+    this.itemList = null;
 
-      elements.map(function (element) {
-        return element.classList.remove('active');
-      });
-    };
-
-    this.addActive = function () {
-      for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-        elements[_key2] = arguments[_key2];
-      }
-
-      elements.map(function (element) {
-        return element.classList.add('active');
-      });
-    };
-
-    this.createElWithClass = function (tag, className) {
-      var element = document.createElement(tag);
-      element.classList.add(className);
-      return element;
-    };
-
-    this.selector = selector;
     this.init();
   }
 
   _createClass(SelectCustom, [{
+    key: 'resetSelectors',
+    value: function resetSelectors() {
+      this.selectInput.innerHTML = this.selectOptions[0].innerHTML;
+    }
+  }, {
     key: 'init',
     value: function init() {
       var _this = this;
 
-      var selects = [].concat(_toConsumableArray(document.querySelectorAll(this.selector)));
+      this.select.classList.add('select-hidden');
 
-      var _loop = function _loop(i) {
-        var select = selects[i];
-        var selectOptions = [].concat(_toConsumableArray(select.children));
-        var selectWrapper = _this.createElWithClass('div', 'select');
-        var selectInput = _this.createElWithClass('div', 'select-input');
-        var selectList = _this.createElWithClass('ul', 'select-options');
+      // Build HTML Structure
+      this.select.parentNode.insertBefore(this.selectWrapper, this.select);
+      this.selectWrapper.appendChild(this.select);
 
-        select.classList.add('select-hidden');
+      this.select.parentNode.insertBefore(this.selectInput, this.select);
 
-        // Build HTML Structure
-        select.parentNode.insertBefore(selectWrapper, select);
-        selectWrapper.appendChild(select);
+      // Get text of first option
+      this.resetSelectors();
 
-        select.parentNode.insertBefore(selectInput, select);
+      // Fill selectList
+      this.selectOptions.map(function (option, index) {
+        if (index > 0) {
+          var li = document.createElement('li');
+          var text = option.innerHTML;
+          var ref = option.value;
 
-        // Get text of first option
-        selectInput.innerHTML = selectOptions[0].innerHTML;
+          li.innerHTML = text;
+          li.setAttribute('ref', ref);
+          _this.selectList.appendChild(li);
+        }
+      });
+      this.selectWrapper.appendChild(this.selectList);
 
-        // Fill selectList
-        selectOptions.map(function (option, index) {
-          if (index > 0) {
-            var li = document.createElement('li');
-            var text = option.innerHTML;
-            var ref = option.value;
+      // List item event
+      this.itemList = [].concat(_toConsumableArray(this.selectList.children));
+      this.itemList.map(function (item) {
+        item.addEventListener('click', function () {
+          removeActive.apply(undefined, [_this.selectInput, _this.selectList].concat(_toConsumableArray(_this.itemList)));
+          addActive(item);
 
-            li.innerHTML = text;
-            li.setAttribute('ref', ref);
-            selectList.appendChild(li);
-          }
+          _this.selectInput.innerHTML = item.innerHTML;
         });
-        selectWrapper.appendChild(selectList);
+      });
 
-        // List item event
-        var itemList = [].concat(_toConsumableArray(selectList.children));
-        itemList.map(function (item) {
-          item.addEventListener('click', function () {
-            _this.removeActive.apply(_this, [selectInput, selectList].concat(_toConsumableArray(itemList)));
-            _this.addActive(item);
+      this.selectInput.addEventListener('click', function () {
+        if (_this.selectInput.classList.contains('active')) {
+          removeActive(_this.selectInput, _this.selectList);
+        } else {
+          addActive(_this.selectInput, _this.selectList);
+        }
+      });
 
-            selectInput.innerHTML = item.innerHTML;
-          });
-        });
-
-        selectInput.addEventListener('click', function (event) {
-          if (selectInput.classList.contains('active')) {
-            _this.removeActive(selectInput, selectList);
-          } else {
-            _this.addActive(selectInput, selectList);
-          }
-        });
-
-        document.addEventListener('click', function (event) {
-          var isClickInside = selectWrapper.contains(event.target);
-          if (!isClickInside) {
-            _this.removeActive(selectInput, selectList);
-          }
-        });
-      };
-
-      for (var i = 0; i < selects.length; i++) {
-        _loop(i);
-      }
+      document.addEventListener('click', function (event) {
+        var isClickInside = _this.selectWrapper.contains(event.target);
+        if (!isClickInside) {
+          removeActive(_this.selectInput, _this.selectList);
+        }
+      });
     }
   }]);
 
