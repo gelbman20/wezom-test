@@ -16,7 +16,7 @@
 # Compulsory folders
 !/dev
 !/sources
-!/dist
+!/docs
 
 # Ignored inside dev folders and files
 /dev/*.html
