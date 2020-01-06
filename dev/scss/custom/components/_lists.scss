@@ -10,3 +10,10 @@
     margin-left: 6px;
   }
 }
+
+.list-inline-lg {
+  margin-left: -15px;
+  > li {
+    margin-left: 15px;
+  }
+}

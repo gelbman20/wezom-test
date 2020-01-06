@@ -237,3 +237,29 @@ class Product {
     });
   }
 }
+
+/**
+ * Modal
+*/
+class Modal {
+  constructor({ selector = '.modal-link' } = {}) {
+    this.modal = selector;
+    this.modalLink = this.modal.getAttribute('href');
+    this.popupBlacout = document.querySelector(this.modalLink);
+    this.popup = this.popupBlacout.querySelector('.popup-modal');
+    this.popupClose = this.popupBlacout.querySelector('.popup-close');
+    this.body = document.querySelector('body');
+    this.init();
+  }
+  
+  init() {
+    this.modal.addEventListener('click', (event) => {
+      event.preventDefault();
+      addActive(this.popupBlacout, this.popup, this.body);
+    });
+  
+    this.popupClose.addEventListener('click', (event) => {
+      removeActive(this.popupBlacout, this.popup, this.body)
+    })
+  }
+}

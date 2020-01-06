@@ -226,13 +226,13 @@ var Product = function () {
 
       return function (headerItem, headerItemLabel, productLink, productLinkText, text) {
         if (productLink.classList.contains('active')) {
-          productLink.classList.remove('active');
+          removeActive(productLink);
           productLinkText.innerHTML = text.default;
           counter = headerItemLabel.innerHTML;
           counter--;
           headerItemLabel.innerHTML = counter;
         } else {
-          productLink.classList.add('active');
+          addActive(productLink);
           productLinkText.innerHTML = text.active;
           counter = headerItemLabel.innerHTML;
           counter++;
@@ -304,5 +304,46 @@ var Product = function () {
   }]);
 
   return Product;
+}();
+
+/**
+ * Modal
+*/
+
+
+var Modal = function () {
+  function Modal() {
+    var _ref4 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref4$selector = _ref4.selector,
+        selector = _ref4$selector === undefined ? '.modal-link' : _ref4$selector;
+
+    _classCallCheck(this, Modal);
+
+    this.modal = selector;
+    this.modalLink = this.modal.getAttribute('href');
+    this.popupBlacout = document.querySelector(this.modalLink);
+    this.popup = this.popupBlacout.querySelector('.popup-modal');
+    this.popupClose = this.popupBlacout.querySelector('.popup-close');
+    this.body = document.querySelector('body');
+    this.init();
+  }
+
+  _createClass(Modal, [{
+    key: 'init',
+    value: function init() {
+      var _this5 = this;
+
+      this.modal.addEventListener('click', function (event) {
+        event.preventDefault();
+        addActive(_this5.popupBlacout, _this5.popup, _this5.body);
+      });
+
+      this.popupClose.addEventListener('click', function (event) {
+        removeActive(_this5.popupBlacout, _this5.popup, _this5.body);
+      });
+    }
+  }]);
+
+  return Modal;
 }();
 //# sourceMappingURL=core.js.map

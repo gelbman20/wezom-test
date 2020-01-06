@@ -142,3 +142,72 @@
     background-color: $secondary;
   }
 }
+
+.btn-gray {
+  &, &:focus, &:active {
+    color: $white;
+    background-color: #afb9c6;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: $secondary;
+  }
+}
+
+.btn-block {
+  display: block;
+  width: 100%;
+}
+
+// Buttons Group
+.btn-group {
+  > * + * { margin-top: 25px; }
+  * + & { margin-top: 45px; }
+}
+
+.btn-social {
+  font-size: 14px;
+  font-weight: 400;
+  text-align: center;
+  text-transform: none;
+  > img {
+    margin-right: 15px;
+  }
+}
+
+.btn-facebook {
+  &, &:focus, &:active {
+    color: $white;
+    background-color: $facebook;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: darken($facebook, 15%);
+  }
+}
+
+.btn-twitter {
+  &, &:focus, &:active {
+    color: $white;
+    background-color: $twitter;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: darken($twitter, 15%);
+  }
+}
+
+.btn-google {
+  &, &:focus, &:active {
+    color: $white;
+    background-color: $google;
+  }
+
+  &:hover {
+    color: $white;
+    background-color: darken($google, 15%);
+  }
+}

@@ -14,7 +14,7 @@ header.header
                 li.header-nav-item: a.header-nav-link(href='#') Cсылка 3
           .col-10.col-sm-3.col-lg-4.text-right
             .header-login
-              a.header-login-link.btn-secondary(href='#')
+              a.header-login-link.btn-secondary.modal-link(href='#modal-1')
                 +img('user-01-16x15.png')
                 =" "
                 span Вход
@@ -26,11 +26,11 @@ header.header
             .header-logo-link: +img('logo-default-195x37.png')
         .col-12.col-md-8.col-xl-5
           .header-cta
-            form.form.form-inline
-              .input-group
-                input.form-input(placeholder='+380 98 170 00 740')
-              .input-button
-                button.btn.btn-secondary(type='submit')
+            .cta-inline
+              .cta-group
+                a(href='tel:#') +380 98 170 00 740
+              .cta-button
+                a.btn.btn-secondary.modal-link(href='#modal-2')
                   +img('phone-01-12x17.png')
                   span Перезвонить мне
         .col-12.col-xl-4.text-md-right

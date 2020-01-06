@@ -10,9 +10,10 @@ footer.footer
           .footer-form
             form.form.form-inline
               .input-group
-                input.form-input(placeholder='Укажите свой email для подписки')
+                input.form-input#footer-email(placeholder='Укажите свой email для подписки')
+                span.input-error.text-left Неправильный email
               .input-button
-                button.btn-lg-small.btn.btn-secondary(type='submit')
+                button#btn-footer-email.btn-lg-small.btn.btn-secondary(type='submit')
                   span подписаться
       .col-12.col-lg-6
         .row.row-30

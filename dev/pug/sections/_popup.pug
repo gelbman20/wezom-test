@@ -1,0 +1,51 @@
+.popup-blackuot#modal-1
+  .popup
+    .popup-modal.context-dark
+      .popup-modal-body
+        .popup-close
+        .row.row-bordered
+          .col-12.col-md-6.row-bordered-item
+            h4: span.small.text-bold Вход в личный кабинет
+            form.form.form-login
+              .input-group
+                label.form-label(for='email') Ваш email
+                input#email.form-input(type='email')
+                span.input-error Неправильный email
+              .input-group
+                label.form-label(for='password') Пароль
+                input#password.form-input(type='password')
+                span.input-error Длинна пароля больше 4 символов
+              .input-group.input-group-checkbox
+                label
+                  input(type='checkbox')
+                  span  Запомнить меня
+              .input-group-info
+                ul.list-inline.list-inline-lg
+                  li: a(href='#') Забыли пароль?
+                  li: a(href='#') Регистрация
+              .input-button: button#btn-login.btn-md.btn.btn-gray(type='submit'): span Войти в личный кабинет
+          .col-12.col-md-6.row-bordered-item
+            h4: span.small.text-bold Войти с помощью
+            .btn-group
+              a.btn.btn-block.btn-social.btn-facebook(href='#')
+                +img('facebook-02-9x16.png')
+                span Facebook
+              a.btn.btn-block.btn-social.btn-twitter(href='#')
+                +img('twitter-02-16x13.png')
+                span Twitter
+              a.btn.btn-block.btn-social.btn-google(href='#')
+                +img('google-01-16x16.png')
+                span Google
+
+.popup-blackuot#modal-2
+  .popup
+    .popup-modal.popup-modal-sm.context-dark
+      .popup-modal-body
+        .popup-close
+        h4: span.small.text-bold Перезвоните мне
+        form.form.form-login
+          .input-group
+            label.form-label(for='phone') Номер телефона
+            input#phone.form-input(type='text' value='+38(0')
+            span.input-error.text-left Неправильный номер телефона
+          .input-button.text-center: button.btn-md.btn.btn-secondary#btn-phone(type='submit'): span Перезвоните мне
