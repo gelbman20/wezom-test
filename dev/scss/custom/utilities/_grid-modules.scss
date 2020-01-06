@@ -16,6 +16,8 @@
 .container {
   @include make-container();
   @include make-container-max-widths();
+
+  & + & { margin-top: 30px; }
 }
 
 .row {
@@ -26,4 +28,9 @@
     padding-right: ($grid-gutter-width / 2);
     padding-left: ($grid-gutter-width / 2);
   }
+}
+
+.row-no-gutter {
+  margin-right: 0;
+  margin-left: 0;
 }

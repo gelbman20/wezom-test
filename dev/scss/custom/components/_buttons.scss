@@ -42,6 +42,10 @@
     display: inline-block;
   }
 
+  .icon-cart {
+    margin-right: 10px;
+  }
+
   .icon-cross {
     position: relative;
     margin-right: 4px;
@@ -83,11 +87,11 @@
     transition: .3s ease-out all;
   }
 
-  &, &:focus, &:active {
+  &, &:focus, &:active, &.active {
     background-color: $secondary;
   }
 
-  &, &:focus, &:active, &:hover {
+  &, &:focus, &:active, &:hover, &.active {
     color: $white;
   }
 }
@@ -112,6 +116,7 @@
     width: 100%;
   }
 
+  &.active,
   &:hover {
     &:before {
       width: 0;

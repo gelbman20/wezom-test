@@ -1,0 +1,12 @@
+/*
+ * Sections
+*/
+
+.section {
+  padding-top: 60px;
+  padding-bottom: 60px;
+}
+
+.header + .section {
+  padding-top: 0;
+}

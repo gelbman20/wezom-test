@@ -1,10 +1,9 @@
 'use strict';
 
-function _toConsumableArray(arr) { if (Array.isArray(arr)) { for (var i = 0, arr2 = Array(arr.length); i < arr.length; i++) { arr2[i] = arr[i]; } return arr2; } else { return Array.from(arr); } }
-
 var plugins = {
   header: document.querySelector('.header-nav-wrapper'),
-  select: document.querySelectorAll('.select')
+  select: document.querySelectorAll('.select'),
+  tabs: document.querySelectorAll('.tabs')
 };
 
 window.onload = function () {
@@ -53,39 +52,28 @@ window.onload = function () {
     }
   }
 
-  var removeActive = function removeActive() {
-    for (var _len = arguments.length, elements = Array(_len), _key = 0; _key < _len; _key++) {
-      elements[_key] = arguments[_key];
+  // Tabs
+  if (plugins.tabs) {
+    for (var i = 0; i < plugins.tabs.length; i++) {
+      var tab = plugins.tabs[i];
+
+      var _init = new Tabs({
+        selector: tab
+      });
     }
+  }
 
-    elements.map(function (element) {
-      return element.classList.remove('active');
-    });
-  };
+  // Products
+  var products = document.querySelectorAll('.product');
+  if (products) {
 
-  var addActive = function addActive() {
-    for (var _len2 = arguments.length, elements = Array(_len2), _key2 = 0; _key2 < _len2; _key2++) {
-      elements[_key2] = arguments[_key2];
+    for (var _i = 0; _i < products.length; _i++) {
+      var product = products[_i];
+
+      var _init2 = new Product({
+        selector: product
+      });
     }
-
-    elements.map(function (element) {
-      return element.classList.add('active');
-    });
-  };
-
-  var tabsItem = [].concat(_toConsumableArray(document.querySelectorAll('.tabs-list-item')));
-  var tabsPane = [].concat(_toConsumableArray(document.querySelectorAll('.tabs-pane')));
-
-  tabsItem.map(function (item) {
-    return item.addEventListener('click', function (event) {
-
-      var tabsPageLink = item.querySelector('a').getAttribute('href');
-      var activeTabsPane = document.querySelector(tabsPageLink);
-
-      event.preventDefault();
-      removeActive.apply(undefined, _toConsumableArray(tabsItem).concat(_toConsumableArray(tabsPane)));
-      addActive(item, activeTabsPane);
-    });
-  });
+  }
 };
 //# sourceMappingURL=script.js.map

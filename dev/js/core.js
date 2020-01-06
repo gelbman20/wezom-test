@@ -44,34 +44,32 @@ var Header = function () {
   function Header() {
     _classCallCheck(this, Header);
 
+    this.navWrapper = document.querySelector('.header-nav-wrapper');
+    this.nav = document.querySelector('.header-nav');
+    this.navToggle = document.querySelector('.header-nav-toggle');
     this.init();
   }
 
   _createClass(Header, [{
     key: 'init',
     value: function init() {
-      var navWrapper = document.querySelector('.header-nav-wrapper');
-      var nav = document.querySelector('.header-nav');
-      var navToggle = document.querySelector('.header-nav-toggle');
+      var _this = this;
 
-      if (navToggle) {
-        navToggle.addEventListener('click', function (event) {
-          if (nav.classList.contains('open')) {
-            navToggle.classList.remove('open');
-            nav.classList.remove('open');
+      if (this.navToggle) {
+        this.navToggle.addEventListener('click', function (event) {
+          if (_this.nav.classList.contains('active')) {
+            removeActive(_this.navToggle, _this.nav);
           } else {
-            navToggle.classList.add('open');
-            nav.classList.add('open');
+            addActive(_this.navToggle, _this.nav);
           }
           event.preventDefault();
         });
       }
 
       document.addEventListener('click', function (event) {
-        var isClickInside = navWrapper.contains(event.target);
-        if (!isClickInside && nav.classList.contains('open')) {
-          navToggle.classList.remove('open');
-          nav.classList.remove('open');
+        var isClickInside = _this.navWrapper.contains(event.target);
+        if (!isClickInside && _this.nav.classList.contains('active')) {
+          removeActive(_this.navToggle, _this.nav);
         }
       });
     }
@@ -111,7 +109,7 @@ var SelectCustom = function () {
   }, {
     key: 'init',
     value: function init() {
-      var _this = this;
+      var _this2 = this;
 
       this.select.classList.add('select-hidden');
 
@@ -133,7 +131,7 @@ var SelectCustom = function () {
 
           li.innerHTML = text;
           li.setAttribute('ref', ref);
-          _this.selectList.appendChild(li);
+          _this2.selectList.appendChild(li);
         }
       });
       this.selectWrapper.appendChild(this.selectList);
@@ -142,30 +140,169 @@ var SelectCustom = function () {
       this.itemList = [].concat(_toConsumableArray(this.selectList.children));
       this.itemList.map(function (item) {
         item.addEventListener('click', function () {
-          removeActive.apply(undefined, [_this.selectInput, _this.selectList].concat(_toConsumableArray(_this.itemList)));
+          removeActive.apply(undefined, [_this2.selectInput, _this2.selectList].concat(_toConsumableArray(_this2.itemList)));
           addActive(item);
 
-          _this.selectInput.innerHTML = item.innerHTML;
+          _this2.selectInput.innerHTML = item.innerHTML;
         });
       });
 
       this.selectInput.addEventListener('click', function () {
-        if (_this.selectInput.classList.contains('active')) {
-          removeActive(_this.selectInput, _this.selectList);
+        if (_this2.selectInput.classList.contains('active')) {
+          removeActive(_this2.selectInput, _this2.selectList);
         } else {
-          addActive(_this.selectInput, _this.selectList);
+          addActive(_this2.selectInput, _this2.selectList);
         }
       });
 
       document.addEventListener('click', function (event) {
-        var isClickInside = _this.selectWrapper.contains(event.target);
+        var isClickInside = _this2.selectWrapper.contains(event.target);
         if (!isClickInside) {
-          removeActive(_this.selectInput, _this.selectList);
+          removeActive(_this2.selectInput, _this2.selectList);
         }
       });
     }
   }]);
 
   return SelectCustom;
+}();
+
+/**
+ * Tabs
+*/
+
+
+var Tabs = function () {
+  function Tabs() {
+    var _ref2 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref2$selector = _ref2.selector,
+        selector = _ref2$selector === undefined ? '.tabs' : _ref2$selector;
+
+    _classCallCheck(this, Tabs);
+
+    this.select = selector;
+    this.tabsItem = [].concat(_toConsumableArray(this.select.querySelectorAll('.tabs-list-item')));
+    this.tabsPane = [].concat(_toConsumableArray(this.select.querySelectorAll('.tabs-pane')));
+    this.init();
+  }
+
+  _createClass(Tabs, [{
+    key: 'init',
+    value: function init() {
+      var _this3 = this;
+
+      this.tabsItem.map(function (item) {
+        return item.addEventListener('click', function (event) {
+
+          var tabsPageLink = item.querySelector('a').getAttribute('href');
+          var activeTabsPane = document.querySelector(tabsPageLink);
+
+          event.preventDefault();
+          removeActive.apply(undefined, _toConsumableArray(_this3.tabsItem).concat(_toConsumableArray(_this3.tabsPane)));
+          addActive(item, activeTabsPane);
+        });
+      });
+    }
+  }]);
+
+  return Tabs;
+}();
+
+/**
+* Product
+*/
+
+
+var Product = function () {
+  function Product() {
+    var _ref3 = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : {},
+        _ref3$selector = _ref3.selector,
+        selector = _ref3$selector === undefined ? '.product' : _ref3$selector;
+
+    _classCallCheck(this, Product);
+
+    this.incrementProduct = function () {
+      var counter = arguments.length > 0 && arguments[0] !== undefined ? arguments[0] : 0;
+
+      return function (headerItem, headerItemLabel, productLink, productLinkText, text) {
+        if (productLink.classList.contains('active')) {
+          productLink.classList.remove('active');
+          productLinkText.innerHTML = text.default;
+          counter = headerItemLabel.innerHTML;
+          counter--;
+          headerItemLabel.innerHTML = counter;
+        } else {
+          productLink.classList.add('active');
+          productLinkText.innerHTML = text.active;
+          counter = headerItemLabel.innerHTML;
+          counter++;
+          headerItemLabel.innerHTML = counter;
+        }
+      };
+    };
+
+    this.product = selector;
+    this.init();
+  }
+
+  _createClass(Product, [{
+    key: 'init',
+    value: function init() {
+      var _this4 = this;
+
+      var headerCart = document.querySelector('.header-info-group-link-cart');
+      var headerCartLabel = headerCart.querySelector('.header-info-label');
+
+      var headerCompare = document.querySelector('.header-info-group-link-compare');
+      var headerCompareLabel = headerCompare.querySelector('.header-info-label');
+
+      var headerFavorite = document.querySelector('.header-info-group-link-favorite');
+      var headerFavoriteLabel = headerFavorite.querySelector('.header-info-label');
+
+      var productBtnCart = this.product.querySelector('.product-btn-cart');
+
+      var productLinkCompare = this.product.querySelector('.product-compare-link');
+      var productLinkCompareText = productLinkCompare.querySelector('.product-compare-text');
+
+      var productLinkFavorite = this.product.querySelector('.product-favorites-link');
+      var productLinkFavoriteText = productLinkFavorite.querySelector('.product-favorites-text');
+
+      var count = 0;
+      productBtnCart.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        if (productBtnCart.classList.contains('active')) {
+          productBtnCart.classList.remove('active');
+          count = headerCartLabel.innerHTML;
+          count--;
+          headerCartLabel.innerHTML = count;
+        } else {
+          productBtnCart.classList.add('active');
+          count = headerCartLabel.innerHTML;
+          count++;
+          headerCartLabel.innerHTML = count;
+        }
+      });
+
+      productLinkCompare.addEventListener('click', function (event) {
+        event.preventDefault();
+        _this4.incrementProduct()(headerCompare, headerCompareLabel, productLinkCompare, productLinkCompareText, {
+          default: 'Сравнить товар',
+          active: 'В сравнении'
+        });
+      });
+
+      productLinkFavorite.addEventListener('click', function (event) {
+        event.preventDefault();
+
+        _this4.incrementProduct()(headerFavorite, headerFavoriteLabel, productLinkFavorite, productLinkFavoriteText, {
+          default: 'В избранное',
+          active: 'В избранном'
+        });
+      });
+    }
+  }]);
+
+  return Product;
 }();
 //# sourceMappingURL=core.js.map

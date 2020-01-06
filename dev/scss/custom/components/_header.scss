@@ -77,7 +77,7 @@ body {
       }
     }
 
-    &.open {
+    &.active {
 
       > span {
 
@@ -160,7 +160,7 @@ body {
     background-color: $gray-23;
     transition: .3s ease-out transform;
 
-    &.open {
+    &.active {
       transform: translateX(0);
     }
 
@@ -255,13 +255,14 @@ body {
         margin-right: auto;
       }
 
-      > * + * { margin-top: 5px; }
+      > * { margin-bottom: 5px; }
     }
   }
 
   &-label {
     position: absolute;
-    bottom: calc(100% + 5px);
+    bottom: calc(100% + 7px);
+    margin-bottom: 0;
     left: 50%;
     transform: translateX(-50%);
     width: 20px;

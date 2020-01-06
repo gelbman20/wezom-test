@@ -22,32 +22,28 @@ const addActive = (...elements) => {
 class Header {
   
   constructor() {
+    this.navWrapper = document.querySelector('.header-nav-wrapper');
+    this.nav = document.querySelector('.header-nav');
+    this.navToggle = document.querySelector('.header-nav-toggle');
     this.init();
   }
   
   init() {
-    const navWrapper = document.querySelector('.header-nav-wrapper');
-    const nav = document.querySelector('.header-nav');
-    const navToggle = document.querySelector('.header-nav-toggle');
-    
-    if(navToggle) {
-      navToggle.addEventListener('click', (event) => {
-        if(nav.classList.contains('open')) {
-          navToggle.classList.remove('open');
-          nav.classList.remove('open');
+    if(this.navToggle) {
+      this.navToggle.addEventListener('click', (event) => {
+        if(this.nav.classList.contains('active')) {
+          removeActive(this.navToggle, this.nav);
         } else {
-          navToggle.classList.add('open');
-          nav.classList.add('open');
+          addActive(this.navToggle, this.nav);
         }
         event.preventDefault();
       })
     }
     
     document.addEventListener('click', (event) => {
-      const isClickInside = navWrapper.contains(event.target);
-      if(!isClickInside&&nav.classList.contains('open')) {
-        navToggle.classList.remove('open');
-        nav.classList.remove('open');
+      const isClickInside = this.navWrapper.contains(event.target);
+      if(!isClickInside && this.nav.classList.contains('active')) {
+        removeActive(this.navToggle, this.nav);
       }
     });
   }
@@ -123,6 +119,121 @@ class SelectCustom {
       if(!isClickInside) {
         removeActive(this.selectInput, this.selectList);
       }
+    });
+  }
+}
+
+/**
+ * Tabs
+*/
+class Tabs {
+  constructor({ selector = '.tabs' } = {}) {
+    this.select = selector;
+    this.tabsItem = [...this.select.querySelectorAll('.tabs-list-item')];
+    this.tabsPane = [...this.select.querySelectorAll('.tabs-pane')];
+    this.init();
+  }
+  
+  init() {
+    this.tabsItem.map(item => item.addEventListener('click', (event) => {
+    
+      const tabsPageLink = item.querySelector('a').getAttribute('href');
+      const activeTabsPane = document.querySelector(tabsPageLink);
+    
+      event.preventDefault();
+      removeActive(...this.tabsItem, ...this.tabsPane);
+      addActive(item, activeTabsPane);
+    }))
+  }
+}
+
+/**
+* Product
+*/
+class Product {
+  constructor({ selector = '.product' } = {}) {
+    this.product = selector;
+    this.init();
+  }
+  
+  incrementProduct = (counter = 0) => {
+    return (headerItem, headerItemLabel, productLink, productLinkText, text) => {
+      if(productLink.classList.contains('active')) {
+        productLink.classList.remove('active');
+        productLinkText.innerHTML = text.default;
+        counter = headerItemLabel.innerHTML;
+        counter--;
+        headerItemLabel.innerHTML = counter;
+      } else {
+        productLink.classList.add('active');
+        productLinkText.innerHTML = text.active;
+        counter = headerItemLabel.innerHTML;
+        counter++;
+        headerItemLabel.innerHTML = counter;
+      }
+    }
+  };
+  
+  init() {
+    const headerCart = document.querySelector('.header-info-group-link-cart');
+    const headerCartLabel = headerCart.querySelector('.header-info-label');
+  
+    const headerCompare = document.querySelector('.header-info-group-link-compare');
+    let headerCompareLabel = headerCompare.querySelector('.header-info-label');
+  
+    const headerFavorite = document.querySelector('.header-info-group-link-favorite');
+    let headerFavoriteLabel = headerFavorite.querySelector('.header-info-label');
+  
+    const productBtnCart = this.product.querySelector('.product-btn-cart');
+  
+    const productLinkCompare = this.product.querySelector('.product-compare-link');
+    const productLinkCompareText = productLinkCompare.querySelector('.product-compare-text');
+  
+    const productLinkFavorite = this.product.querySelector('.product-favorites-link');
+    const productLinkFavoriteText = productLinkFavorite.querySelector('.product-favorites-text');
+  
+    let count = 0;
+    productBtnCart.addEventListener('click', (event) => {
+      event.preventDefault();
+    
+      if(productBtnCart.classList.contains('active')) {
+        productBtnCart.classList.remove('active');
+        count = headerCartLabel.innerHTML;
+        count--;
+        headerCartLabel.innerHTML = count;
+      } else {
+        productBtnCart.classList.add('active');
+        count = headerCartLabel.innerHTML;
+        count++;
+        headerCartLabel.innerHTML = count;
+      }
+    });
+  
+    productLinkCompare.addEventListener('click', (event) => {
+      event.preventDefault();
+      this.incrementProduct()(
+        headerCompare,
+        headerCompareLabel,
+        productLinkCompare,
+        productLinkCompareText,
+        {
+          default: 'Сравнить товар',
+          active: 'В сравнении'
+        });
+    });
+  
+    productLinkFavorite.addEventListener('click', (event) => {
+      event.preventDefault();
+    
+      this.incrementProduct()(
+        headerFavorite,
+        headerFavoriteLabel,
+        productLinkFavorite,
+        productLinkFavoriteText,
+        {
+          default: 'В избранное',
+          active: 'В избранном'
+        });
     });
   }
 }
