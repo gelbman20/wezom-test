@@ -34,6 +34,12 @@
   padding: 18px 51px;
   font-size: 16px;
   font-weight: 700;
+  &-small {
+    padding: 15px 20px;
+    font-size: 16px;
+    font-weight: 700;
+    text-transform: uppercase;
+  }
 }
 
 .btn-with-icon {

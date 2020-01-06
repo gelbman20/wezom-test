@@ -4,7 +4,6 @@
 
 // Body
 body {
-
   font-size: $font-size-body;
   font-weight: $fw-base;
   line-height: $lh-base;
@@ -13,11 +12,12 @@ body {
   background-color: $body-bg;
   -webkit-text-size-adjust: none;
   -webkit-font-smoothing: subpixel-antialiased;
+  overflow-x: hidden;
+
 }
 
 .page {
   min-height: 100vh;
-  overflow-x: hidden;
 }
 
 // Headings
@@ -29,6 +29,20 @@ body {
 
     &:hover { color: $primary; }
   }
+}
+
+h4 {
+  font-size: 24px;
+  line-height: 1.2;
+  @include media-breakpoint-up(md) {
+    font-size: 26px;
+  }
+}
+
+h5 {
+  font-size: 20px;
+  font-weight: 500;
+  line-height: 1.2;
 }
 
 h2 {
@@ -67,4 +81,12 @@ a {
 img {
   max-width: 100%;
   height: auto;
+}
+
+.text-bold {
+  font-weight: 700;
+}
+
+.text-extra-bold {
+  font-weight: 900;
 }

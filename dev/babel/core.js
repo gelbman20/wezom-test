@@ -159,13 +159,13 @@ class Product {
   incrementProduct = (counter = 0) => {
     return (headerItem, headerItemLabel, productLink, productLinkText, text) => {
       if(productLink.classList.contains('active')) {
-        productLink.classList.remove('active');
+        removeActive(productLink);
         productLinkText.innerHTML = text.default;
         counter = headerItemLabel.innerHTML;
         counter--;
         headerItemLabel.innerHTML = counter;
       } else {
-        productLink.classList.add('active');
+        addActive(productLink);
         productLinkText.innerHTML = text.active;
         counter = headerItemLabel.innerHTML;
         counter++;

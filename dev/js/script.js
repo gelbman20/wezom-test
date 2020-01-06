@@ -3,7 +3,8 @@
 var plugins = {
   header: document.querySelector('.header-nav-wrapper'),
   select: document.querySelectorAll('.select'),
-  tabs: document.querySelectorAll('.tabs')
+  tabs: document.querySelectorAll('.tabs'),
+  copyrightYear: document.querySelector('.copyright-year')
 };
 
 window.onload = function () {
@@ -74,6 +75,11 @@ window.onload = function () {
         selector: product
       });
     }
+  }
+
+  // Copyright Year
+  if (plugins.copyrightYear) {
+    plugins.copyrightYear.innerHTML = new Date().getFullYear().toString();
   }
 };
 //# sourceMappingURL=script.js.map

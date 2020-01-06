@@ -51,6 +51,14 @@ $form-input-height: 49px;
     font-style: normal;
     color: $gray-20;
   }
+
+  .footer & {
+    padding: 14px 30px;
+    font-size: 14px;
+    font-weight: 400;
+    font-style: normal;
+    color: $gray-12;
+  }
 }
 
 .form-input-number {

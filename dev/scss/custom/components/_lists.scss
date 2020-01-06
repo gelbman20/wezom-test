@@ -1,0 +1,12 @@
+/*
+ * Lists
+*/
+
+.list-inline {
+  margin-left: -6px;
+  > li {
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 6px;
+  }
+}

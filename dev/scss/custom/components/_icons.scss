@@ -1,0 +1,85 @@
+/*
+ * Icons
+*/
+.icon {
+  > span {
+    background-image: url(../images/icons.png);
+    background-repeat: no-repeat;
+    display: block;
+    transition: .22s ease-out all;
+  }
+}
+
+.icon-default {
+
+}
+
+.icon-square {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 49px;
+  height: 49px;
+  border: 1px solid #7b8092;
+  transition: .3s ease-out all;
+
+  &:hover {
+    border-color: $primary;
+  }
+}
+
+.icon-facebook {
+  > span {
+    width: 8px;
+    height: 16px;
+    background-position: -5px -5px;
+  }
+
+  &:hover {
+    > span {
+      background-position: -23px -5px;
+    }
+  }
+}
+
+.icon-twitter {
+  > span {
+    width: 16px;
+    height: 13px;
+    background-position: -41px -5px;
+  }
+
+  &:hover {
+    > span {
+      background-position: -41px -28px;
+    }
+  }
+}
+
+.icon-vk {
+  > span {
+    width: 16px;
+    height: 9px;
+    background-position: -5px -51px;
+  }
+
+  &:hover {
+    > span {
+      background-position: -31px -51px;
+    }
+  }
+}
+
+.icon-youtube {
+  > span {
+    width: 16px;
+    height: 11px;
+    background-position: -67px -5px;
+  }
+
+  &:hover {
+    > span {
+      background-position: -67px -26px;
+    }
+  }
+}
